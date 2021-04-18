@@ -127,6 +127,9 @@ bool Vector4D::operator>(const Vector4D& rhs) const {
 		if (this->vec[i] > rhs.vec[i]) {
 			return true;
 		}
+		else if (this->vec[i] < rhs.vec[i]) {
+			return false;
+		}
 		else {
 			continue;
 		}
@@ -138,6 +141,12 @@ bool Vector4D::operator>=(const Vector4D& rhs) const {
 		if (this->vec[i] < rhs.vec[i]) {
 			return false;
 		}
+		else if(this->vec[i] > rhs.vec[i]) {
+			return true;
+		}
+		else {
+			continue;
+		}
 	}
 	return true;
 }
@@ -146,6 +155,9 @@ bool Vector4D::operator<(const Vector4D& rhs) const {
 	for (size_t i = 0; i < this->vec.size();i++) {
 		if (this->vec[i] < rhs.vec[i]) {
 			return true;
+		}
+		else if (this->vec[i] > rhs.vec[i]) {
+			return false;
 		}
 		else {
 			continue;
@@ -157,6 +169,12 @@ bool Vector4D::operator<=(const Vector4D& rhs) const {
 	for (size_t i = 0; i < this->vec.size();i++) {
 		if (this->vec[i] > rhs.vec[i]) {
 			return false;
+		}
+		else if (this->vec[i] < rhs.vec[i]) {
+			return true;
+		}
+		else {
+			continue;
 		}
 	}
 	return true;
