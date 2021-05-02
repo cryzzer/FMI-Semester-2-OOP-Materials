@@ -1,0 +1,25 @@
+Joey's Battlecity deck|9|10|3|
+Gearfried the I. Knight|When an Equip Card is equipped to this card, destroy the Equip Card.|1800|1600
+Gilford the Lightning|If summoned by tributing 3 monsters, destroy all monsters on your opponent's side of the field.|2800|1400
+Hayabusa Knight|This card can attack twice during the same Battle Phase.|1000|700
+Insect Queen|This card gains 200 ATK for each Insect-Type monster on the field.|2200|2400
+Jinzo|As long as this card remains face-up on the field, negate the activation and effect of Trap Cards.|2400|1500
+Panther Warrior|This card cannot declare an attack unless you Tribute 1 monster.|2000|1600
+Parasite Paracide|If this card is in your hand, it is forced into play. All your monsters become parasitized.|500|300
+Rocket Warrior|After damage calculation, decrease the ATK of the monster that was attacked by 500 points|1500|1300
+The Legendary Fisherman|When "Umi" is on the field, this card is unaffected by Spells and cannot be targeted for attacks|1850|1600
+Energy Drain|Select 1 face-up monster your opponent controls. Draw 1 card. That monster's ATK becomes 0.|SPELL
+Fairy Box|All monsters on your side of the field are hidden in a box to disrupt enemy attacks.|BUFF
+Foolish Burial|Select 1 card from your Deck and send it to your opponent's Graveyard.|SPELL
+Giant Trunade|Return all Spell and Trap Cards on the field to the hand.|SPELL
+Graceful Dice|Roll a six-sided die and select 1 monster with 500 or less ATK. Multiply its ATK by the number rolled.|BUFF
+Lightning Blade|This card can only be equipped to Warrior-Type monsters. Increases the ATK of the equipped monster by 800 points and decreases the ATK of all WATER monsters on the field by 500 points.|BUFF
+Monster Reborn|Select 1 Monster Card from either your opponent's or your own Graveyard and place it on the field under your control in Attack or Defense Position (face-up). This is considered a Special Summon.|SPELL
+Chasm of Spikes|When an opponent's monster attacks, it is destroyed. The opponent loses Life Points equal to 1/4 of the monster's ATK.|TRAP
+Graverobber|Steal 1 card from your opponent's Graveyard.|TRAP
+Kunai with Chain|An opponent's attacking monster can be switched to Defense Position. Also, your monster gains 500 ATK!|TRAP
+Odd-Eyes Pendulum Dragon|If this card battles an opponent's monster, any battle damage this card inflicts to your opponent is doubled.|2500|2000|SPELL|6
+Luster Pendulum, the Dracoslayer|Once per turn, if you have a card in your other Pendulum Zone: You can destroy that card, and if you do, add 1 card from your Deck to your hand, with the same name as that card.|1850|0|BUFF|5
+Lancephorhynchus|If a Normal Monster you control attacks a Defense Position monster, inflict piercing battle damage to your opponent.|2700|800|TRAP|7
+
+

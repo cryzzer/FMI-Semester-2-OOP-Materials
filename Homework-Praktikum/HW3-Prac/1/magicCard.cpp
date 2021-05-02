@@ -1,0 +1,78 @@
+//
+// Created by User on 28.4.2021 г..
+//
+
+#include "magicCard.hpp"
+#include <iostream>
+
+///calling the constructor Card into the initializing list
+MagicCard::MagicCard(std::string name, std::string effect, CardType cardType) : Card(name, effect),
+                                                                                spellType(cardType) {
+}
+
+
+CardType MagicCard::getCardType() const {
+    return spellType;
+}
+
+
+void MagicCard::setCardType(CardType newCardType) {
+    spellType = newCardType;
+}
+
+void MagicCard::print() {
+    std::cout << "Name: " << getName() << std::endl;
+    std::cout << "Effect: " << getEffect() << std::endl;
+    std::cout << "CardType: " << (int) spellType << std::endl;
+}
+
+std::string MagicCard::getCardTypeString() const {
+    std::string cardTypeString;
+    switch(getCardType()){
+        case CardType::SPELL:
+            cardTypeString = "SPELL";
+            break;
+        case CardType::TRAP:
+            cardTypeString = "TRAP";
+            break;
+        case CardType::BUFF:
+            cardTypeString = "BUFF";
+            break;
+    }
+    return cardTypeString;
+}
+
+void defineCardType(std::string &typeString, CardType &cardType) {
+    if(typeString == "BUFF") {
+        cardType = CardType::BUFF;
+    }
+    else if(typeString == "TRAP") {
+        cardType = CardType::TRAP;
+    }
+    else {
+        cardType = CardType::SPELL;
+    }
+}
+
+std::istream& operator>>(std::istream& in,MagicCard& spell){
+    std::string tempName;
+    std::string tempEffect;
+    std::string tempType;
+
+    ///getting the string until we meet '|'
+    std::getline(in,tempName,'|');
+    std::getline(in,tempEffect,'|');
+    std::getline(in,tempType,'\n');
+
+    CardType tempCardType;
+    defineCardType(tempType,tempCardType);///get the type of card
+
+    spell = MagicCard(tempName,tempEffect,tempCardType);///assigning the values into spell
+
+    return in;
+}
+std::ostream& operator<<(std::ostream& out,const MagicCard& spell){
+    ///writing the information into certain format
+    out << spell.getName() << '|' << spell.getEffect() << '|' << spell.getCardTypeString() << '\n';
+    return out;
+}
