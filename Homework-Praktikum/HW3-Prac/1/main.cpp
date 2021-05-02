@@ -1,3 +1,16 @@
+/**
+* Solution to homework assignment 3
+* Object Oriented Programming Course
+* Faculty of Mathematics and Informatics of Sofia University
+* Summer semester 2020/2021
+*
+* @author Danail Nenkov
+* @idnumber 62518
+* @task 1
+* @compiler GCC
+*/
+
+
 #include <iostream>
 #include "pendulumCard.hpp"
 #include "deck.hpp"
