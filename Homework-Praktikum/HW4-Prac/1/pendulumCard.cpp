@@ -46,6 +46,14 @@ Card *PendulumCard::clone() {
     return new PendulumCard(*this);
 }
 
+std::ostream &PendulumCard::doprint(std::ostream &out) const {
+    out << getName() << '|' << getEffect() << '|' << getRarity() << '|'
+        << getAttackPoints() << '|'
+        << getDefencePoints() << '|' << getPendulumScale() << '|' << getCardTypeString()
+        << "\n";
+    return out;
+}
+
 std::istream &operator>>(std::istream &in, PendulumCard &pendulum) {
     std::string tempName;
     std::string tempEffect;

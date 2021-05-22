@@ -172,6 +172,7 @@ void Deck::shuffle() {
             takenPositions[i] = randomNum;
         }
     }
+    delete[] takenPositions;
     deck = temp;
 }
 
@@ -224,8 +225,59 @@ void Deck::setDeckInOrder() {
             break;
         }
     }
-
     deck = temp;
+}
+
+///reading information from 'istream' with a certain format, and after that add this information to the deck
+std::istream &operator>>(std::istream &in, Deck &deck) {
+    std::string tempDeckName;
+    std::string tempCardsCount;
+    std::string monsters;
+    std::string spells;
+    std::string pendulums;
+
+    std::getline(in, tempDeckName, '|');
+    std::getline(in, tempCardsCount, '|');
+    std::getline(in, monsters, '|');
+    std::getline(in, spells, '|');
+    std::getline(in, pendulums, '\n');
+
+    deck.setDeckName(tempDeckName);
+
+    int cardsCount = std::stoi(tempCardsCount);
+    int monsterCount = std::stoi(monsters);
+    int spellCount = std::stoi(spells);
+    int pendulumCount = std::stoi(pendulums);
+
+    for (int i = 0; i < monsterCount; i++) {
+        MonsterCard tempMonster;
+        in >> tempMonster;
+        deck.addCard(new MonsterCard(tempMonster));
+    }
+    for (int i = 0; i < spellCount; i++) {
+        MagicCard tempSpell;
+        in >> tempSpell;
+        deck.addCard(new MagicCard(tempSpell));
+    }
+    for (int i = 0; i < pendulumCount; i++) {
+        PendulumCard tempPendulum;
+        in >> tempPendulum;
+        deck.addCard(new PendulumCard(tempPendulum));
+    }
+    return in;
+}
+
+///read information form the deck, and write it to 'ostream' with a certain format
+std::ostream &operator<<(std::ostream &out, Deck &deck) {
+    out << deck.getDeckName() << '|' << deck.getCardCount() << '|' << deck.getMonsterCount() << '|' << deck.getSpellCount() << '|'
+        << deck.getPendulumCount() << '\n';
+
+    deck.setDeckInOrder();
+
+    for(auto x : deck.deck){
+        out << *x;
+    }
+    return out;
 }
 
 

@@ -25,6 +25,12 @@ MonsterCard::MonsterCard(std::string name, std::string effect, unsigned int rari
     this->defencePoints = defencePoints;
 }
 
+std::ostream & MonsterCard::doprint(std::ostream & out) const {
+    out << getName() << '|' << getEffect() << '|' << getRarity() << '|'
+        << getAttackPoints() << '|' << getDefencePoints() << '\n';
+    return out;
+}
+
 unsigned int MonsterCard::getAttackPoints() const {
     return attackPoints;
 }

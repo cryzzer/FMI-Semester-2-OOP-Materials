@@ -20,6 +20,8 @@ class MonsterCard : virtual public Card {
 private:
     unsigned int attackPoints;
     unsigned int defencePoints;
+
+    std::ostream& doprint(std::ostream& out) const override;
 public:
     MonsterCard(std::string name = "", std::string effect = "", unsigned int rarity = 0, unsigned int attackPoints = 0,
                 unsigned int defencePoints = 0);
@@ -33,6 +35,8 @@ public:
     void print() override ;
 
     Card* clone() override;
+
+
 };
 
 ///overloading operators to read/write information about MonsterCard

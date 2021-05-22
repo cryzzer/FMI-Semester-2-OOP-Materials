@@ -50,4 +50,16 @@ unsigned int Card::getRarity() const {
     return rarity;
 }
 
+std::ostream& operator << (std::ostream& out, const Card& b){
+    return b.doprint(out);
+}
+
+bool Card::operator>(const Card &rhs) const {
+    return this->rarity > rhs.rarity;
+}
+
+bool Card::operator<(const Card &rhs) const {
+    return this->rarity < rhs.rarity;
+}
+
 

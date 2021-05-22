@@ -21,6 +21,8 @@ private:
     std::string name;
     std::string effect;
     unsigned int rarity;
+
+    virtual std::ostream& doprint(std::ostream& out) const = 0;
 public:
     Card(std::string name = "", std::string effect = "", unsigned int rarity = 0);
     virtual ~Card();
@@ -34,10 +36,14 @@ public:
     unsigned int getRarity() const;
 
     virtual void print() = 0;///pure virtual function
-    bool operator>(const Card& rhs);
-    bool operator<(const Card& rhs);
+    bool operator>(const Card& rhs) const;
+    bool operator<(const Card& rhs) const;
 
     virtual Card* clone() = 0;
+
+    friend std::ostream& operator << (std::ostream& out, const Card& b);
 };
+
+std::ostream& operator << (std::ostream& out, const Card& b);
 
 #endif //HW3_PRAC_CARD_HPP

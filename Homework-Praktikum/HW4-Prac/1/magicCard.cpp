@@ -55,6 +55,12 @@ Card *MagicCard::clone() {
     return new MagicCard(*this);
 }
 
+std::ostream &MagicCard::doprint(std::ostream &out) const {
+    out << getName() << '|' << getEffect() << '|' << getRarity() << '|' << getCardTypeString()
+        << '\n';
+    return out;
+}
+
 void defineCardType(std::string &typeString, CardType &cardType) {
     if (typeString == "BUFF") {
         cardType = CardType::BUFF;

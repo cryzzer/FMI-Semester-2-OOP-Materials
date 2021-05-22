@@ -22,6 +22,7 @@ private:
     std::string deckName;
     std::vector<Card*> deck;
 
+    bool bothTypesAreEqual(unsigned int index, Card* card);
 public:
     Deck(std::string deckName = "");
     Deck(const Deck& rhs);
@@ -31,21 +32,25 @@ public:
     std::string getDeckName() const;
     void setDeckName(std::string newDeckName);
 
-
     unsigned int getMonsterCount() const;
     unsigned int getSpellCount() const;
     unsigned int getPendulumCount() const;
     unsigned int getCardCount() const;
 
     void addCard(Card* card);
-    bool bothTypesAreEqual(unsigned int index, Card* card);
     void setCard(unsigned int index, Card* card);
 
     void eraseDeck();
     void printDeck();
     void shuffle();
     void setDeckInOrder();
+
+    friend std::ostream& operator<<(std::ostream& out, Deck& deck);
 };
+
+///overloading operators in order to use them to manipulate the deck
+std::istream& operator>>(std::istream& in, Deck& deck);
+std::ostream& operator<<(std::ostream& out, Deck& deck);
 
 
 #endif //HW4_PRAC_DECK_HPP

@@ -27,6 +27,7 @@ class MagicCard : virtual public Card {
 private:
     CardType spellType;
 
+    std::ostream& doprint(std::ostream& out) const override;
 public:
     MagicCard(std::string name = "", std::string effect = "",unsigned int rarity = 0, CardType cardType = CardType::SPELL);
     CardType getCardType() const;

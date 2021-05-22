@@ -20,6 +20,8 @@
 class PendulumCard : public MonsterCard, public MagicCard {
 private:
     int pendulumScale;
+
+    std::ostream& doprint(std::ostream& out) const final;
 public:
     PendulumCard(std::string name = "", std::string effect = "", unsigned int rarity = 0, unsigned int attackPoints = 0,
                  unsigned int defencePoints = 0, CardType spellType = CardType::SPELL, int pendulumScale = 1);
