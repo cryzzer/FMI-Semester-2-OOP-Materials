@@ -11,6 +11,29 @@
 Deck::Deck(std::string deckName) : deckName(deckName) {
 }
 
+Deck::Deck(const Deck &rhs) {
+    this->deckName = rhs.deckName;
+    for(auto cards : rhs.deck){
+        deck.push_back(cards->clone());
+    }
+}
+
+Deck & Deck::operator=(const Deck &rhs) {
+    if(this != &rhs){
+        eraseDeck();
+
+        this->deckName = rhs.deckName;
+        for(auto cards : rhs.deck){
+            deck.push_back(cards->clone());
+        }
+    }
+    return *this;
+}
+
+Deck::~Deck() {
+    eraseDeck();
+}
+
 std::string Deck::getDeckName() const {
     return deckName;
 }

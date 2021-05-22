@@ -22,12 +22,11 @@ private:
     std::string deckName;
     std::vector<Card*> deck;
 
-
 public:
     Deck(std::string deckName = "");
     Deck(const Deck& rhs);
     Deck& operator=(const Deck& rhs);
-    ~Deck() = default;
+    ~Deck();
 
     std::string getDeckName() const;
     void setDeckName(std::string newDeckName);
@@ -46,7 +45,6 @@ public:
     void printDeck();
     void shuffle();
     void setDeckInOrder();
-
 };
 
 

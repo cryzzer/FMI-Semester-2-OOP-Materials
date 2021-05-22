@@ -27,6 +27,8 @@ public:
     int getPendulumScale() const;
     void setPendulumScale(int newPendulumScale);
     void print() final;
+
+    Card* clone() final;
 };
 
 

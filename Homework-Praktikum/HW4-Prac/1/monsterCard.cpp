@@ -53,6 +53,10 @@ void MonsterCard::print() {
     std::cout << "DefencePoints: " << defencePoints << std::endl;
 }
 
+Card *MonsterCard::clone() {
+    return new MonsterCard(*this);
+}
+
 std::istream &operator>>(std::istream &in, MonsterCard &monster) {
     std::string tempName;
     std::string tempEffect;

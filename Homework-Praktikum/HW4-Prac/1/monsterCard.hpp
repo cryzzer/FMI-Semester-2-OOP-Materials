@@ -31,6 +31,8 @@ public:
     void setDefencePoints(unsigned int newDefencePoints);
 
     void print() override ;
+
+    Card* clone() override;
 };
 
 ///overloading operators to read/write information about MonsterCard

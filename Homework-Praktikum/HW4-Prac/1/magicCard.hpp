@@ -34,6 +34,8 @@ public:
     void print() override;
     std::string getCardTypeString() const;///converting the CardType to string
 
+    Card* clone() override;
+
 };
 
 void defineCardType(std::string& typeString, CardType& cardType);///converting the string into CardType

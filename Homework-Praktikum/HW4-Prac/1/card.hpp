@@ -36,6 +36,8 @@ public:
     virtual void print() = 0;///pure virtual function
     bool operator>(const Card& rhs);
     bool operator<(const Card& rhs);
+
+    virtual Card* clone() = 0;
 };
 
 #endif //HW3_PRAC_CARD_HPP

@@ -51,6 +51,10 @@ std::string MagicCard::getCardTypeString() const {
     return cardTypeString;
 }
 
+Card *MagicCard::clone() {
+    return new MagicCard(*this);
+}
+
 void defineCardType(std::string &typeString, CardType &cardType) {
     if (typeString == "BUFF") {
         cardType = CardType::BUFF;

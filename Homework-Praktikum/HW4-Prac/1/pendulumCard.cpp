@@ -42,6 +42,10 @@ void PendulumCard::print() {
     std::cout << "PendulumScale: " << pendulumScale << std::endl;
 }
 
+Card *PendulumCard::clone() {
+    return new PendulumCard(*this);
+}
+
 std::istream &operator>>(std::istream &in, PendulumCard &pendulum) {
     std::string tempName;
     std::string tempEffect;
