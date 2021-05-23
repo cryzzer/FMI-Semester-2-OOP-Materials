@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -55,6 +55,7 @@ Card *MagicCard::clone() {
     return new MagicCard(*this);
 }
 
+///same as operator<<, but for polymorphism
 std::ostream &MagicCard::doprint(std::ostream &out) const {
     out << getName() << '|' << getEffect() << '|' << getRarity() << '|' << getCardTypeString()
         << '\n';
@@ -92,10 +93,10 @@ std::istream &operator>>(std::istream &in, MagicCard &spell) {
 
     return in;
 }
-
-std::ostream &operator<<(std::ostream &out, const MagicCard &spell) {
-    ///writing the information into certain format
-    out << spell.getName() << '|' << spell.getEffect() << '|' << spell.getRarity() << '|' << spell.getCardTypeString()
-        << '\n';
-    return out;
-}
+///leaving this here in case something breaks
+//std::ostream &operator<<(std::ostream &out, const MagicCard &spell) {
+//    ///writing the information into certain format
+//    out << spell.getName() << '|' << spell.getEffect() << '|' << spell.getRarity() << '|' << spell.getCardTypeString()
+//        << '\n';
+//    return out;
+//}

@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -21,21 +21,24 @@ class PendulumCard : public MonsterCard, public MagicCard {
 private:
     int pendulumScale;
 
-    std::ostream& doprint(std::ostream& out) const final;
+    std::ostream &doprint(std::ostream &out) const final;
+
 public:
     PendulumCard(std::string name = "", std::string effect = "", unsigned int rarity = 0, unsigned int attackPoints = 0,
                  unsigned int defencePoints = 0, CardType spellType = CardType::SPELL, int pendulumScale = 1);
 
     int getPendulumScale() const;
+
     void setPendulumScale(int newPendulumScale);
+
     void print() final;
 
-    Card* clone() final;
+    Card *clone() final;
 };
 
 
 ///overloading operators to read/write information about PendulumCard
-std::istream& operator>>(std::istream& in,PendulumCard& pendulum);
-std::ostream& operator<<(std::ostream& out,const PendulumCard& pendulum);
+std::istream &operator>>(std::istream &in, PendulumCard &pendulum);
+//std::ostream& operator<<(std::ostream& out,const PendulumCard& pendulum);
 
 #endif //HW3_PRAC_PENDULUMCARD_HPP

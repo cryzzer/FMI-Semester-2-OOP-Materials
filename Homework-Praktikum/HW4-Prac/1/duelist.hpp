@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -23,19 +23,25 @@ private:
     Deck deck;
 public:
     Duelist(std::string playerName = "", Deck deck = Deck());
-    Deck& getDeck();
+
+    Deck &getDeck();
+
     std::string getPlayerName();
-    void setDeck(const Deck& newDeck);
-    bool saveDeck(const char* fileName);
-    bool loadDeck(const char* fileName);
+
+    void setDeck(const Deck &newDeck);
+
+    bool saveDeck(const char *fileName);
+
+    bool loadDeck(const char *fileName);
 
     void display();
 
-    void duel(Duelist& rhs);
+    void duel(Duelist &rhs);
 };
 
-std::istream& operator>>(std::istream& in, Duelist& duelist);
-std::ostream& operator<<(std::ostream& out, Duelist& duelist);
+std::istream &operator>>(std::istream &in, Duelist &duelist);
+
+std::ostream &operator<<(std::ostream &out, Duelist &duelist);
 
 
 #endif //HW4_PRAC_DUELIST_HPP

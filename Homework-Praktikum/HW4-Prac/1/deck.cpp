@@ -1,7 +1,14 @@
-//
-// Created by User on 22.5.2021 г..
-//
-
+/**
+* Solution to homework assignment 4
+* Object Oriented Programming Course
+* Faculty of Mathematics and Informatics of Sofia University
+* Summer semester 2020/2021
+*
+* @author Danail Nenkov
+* @idnumber 62518
+* @task 1
+* @compiler GCC
+*/
 #include "deck.hpp"
 #include <iostream>
 
@@ -13,17 +20,21 @@ Deck::Deck(std::string deckName) : deckName(deckName) {
 
 Deck::Deck(const Deck &rhs) {
     this->deckName = rhs.deckName;
-    for(auto cards : rhs.deck){
+    for (auto cards : rhs.deck) {
+        ///because if we only copy the pointers, if the value that they point to gets deleted, these pointers will be
+        /// ///unavailable, so we clone the existing cards and add them to the new vector
         deck.push_back(cards->clone());
     }
 }
 
-Deck & Deck::operator=(const Deck &rhs) {
-    if(this != &rhs){
+Deck &Deck::operator=(const Deck &rhs) {
+    if (this != &rhs) {
         eraseDeck();
 
         this->deckName = rhs.deckName;
-        for(auto cards : rhs.deck){
+        for (auto cards : rhs.deck) {
+            ///because if we only copy the pointers, if the value that they point to gets deleted, these pointers will be
+            /// ///unavailable, so we clone the existing cards and add them to the new vector
             deck.push_back(cards->clone());
         }
     }
@@ -42,16 +53,17 @@ void Deck::setDeckName(std::string newDeckName) {
     deckName = newDeckName;
 }
 
-Card * Deck::getCard(size_t index) {
-    assert(index < deck.size());
+Card *Deck::getCard(size_t index) {
+    assert(index < deck.size());///if index is out of boundaries, its and error
 
-    return deck[index];
+    return deck[index];///return card at this index
 }
 
+///if the name of the card and it's type are equal, then count how many times there is such card
 int Deck::timesCardExists(Card *card) {
     int timesExists = 0;
     for (size_t i = 0; i < deck.size(); i++) {
-        if (deck[i]->getName() == card->getName() && bothTypesAreEqual(i,card)) {
+        if (deck[i]->getName() == card->getName() && bothTypesAreEqual(i, card)) {
             timesExists++;
         }
     }
@@ -59,10 +71,10 @@ int Deck::timesCardExists(Card *card) {
 }
 
 void Deck::addCard(Card *card) {
-    if(timesCardExists(card) <= 2){
+    ///if this card exist 3 times or less add it to the deck, otherwise delete its value and don't add it to the deck
+    if (timesCardExists(card) <= 2) {
         deck.push_back(card);
-    }
-    else{
+    } else {
         delete card;
     }
 }
@@ -70,27 +82,30 @@ void Deck::addCard(Card *card) {
 bool Deck::bothTypesAreEqual(unsigned int index, Card *card) {
     assert(index < deck.size());
 
-    auto monPtr = dynamic_cast<MonsterCard*>(card);
-    auto spellPtr = dynamic_cast<MagicCard*>(card);
-    auto pendPtr = dynamic_cast<PendulumCard*>(card);
+    auto monPtr = dynamic_cast<MonsterCard *>(card);
+    auto spellPtr = dynamic_cast<MagicCard *>(card);
+    auto pendPtr = dynamic_cast<PendulumCard *>(card);
 
-    if(monPtr && pendPtr == nullptr){
-        auto otherPtr = dynamic_cast<MonsterCard*>(deck[index]);
-        auto excludePtr = dynamic_cast<PendulumCard*>(deck[index]);
-        if(otherPtr && excludePtr == nullptr){
+    ///if monster pointer is a valid pointer and both cards can't be casted to PendulumCard they are equal
+    if (monPtr && pendPtr == nullptr) {
+        auto otherPtr = dynamic_cast<MonsterCard *>(deck[index]);
+        auto excludePtr = dynamic_cast<PendulumCard *>(deck[index]);
+        if (otherPtr && excludePtr == nullptr) {
             return true;
         }
     }
-    else if(spellPtr && pendPtr == nullptr){
-        auto otherPtr = dynamic_cast<MagicCard*>(deck[index]);
-        auto excludePtr = dynamic_cast<PendulumCard*>(deck[index]);
-        if(otherPtr && excludePtr == nullptr){
+        ///if spell pointer is a valid pointer and both cards can't be casted to PendulumCard they are equal
+    else if (spellPtr && pendPtr == nullptr) {
+        auto otherPtr = dynamic_cast<MagicCard *>(deck[index]);
+        auto excludePtr = dynamic_cast<PendulumCard *>(deck[index]);
+        if (otherPtr && excludePtr == nullptr) {
             return true;
         }
     }
-    else if(pendPtr){
-        auto otherPtr = dynamic_cast<PendulumCard*>(deck[index]);
-        if(otherPtr){
+        ///if both pointers are valid, they are equal
+    else if (pendPtr) {
+        auto otherPtr = dynamic_cast<PendulumCard *>(deck[index]);
+        if (otherPtr) {
             return true;
         }
     }
@@ -98,13 +113,12 @@ bool Deck::bothTypesAreEqual(unsigned int index, Card *card) {
 }
 
 
-
 void Deck::setCard(unsigned int index, Card *card) {
-    if(bothTypesAreEqual(index, card)){
+    ///if both types are equal, change card at index, other wise print error message
+    if (bothTypesAreEqual(index, card)) {
         delete deck[index];
         deck[index] = card;
-    }
-    else{
+    } else {
         std::cout << "===========These two types does not match!================\n";
     }
 }
@@ -113,10 +127,11 @@ void Deck::setCard(unsigned int index, Card *card) {
 unsigned int Deck::monsterCount() const {
     int counter = 0;
 
-    for(auto card: deck){
-        auto monsterPtr = dynamic_cast<MonsterCard*>(card);
-        auto pendPtr = dynamic_cast<PendulumCard*>(card);
-        if(monsterPtr && pendPtr == nullptr){
+    for (auto card: deck) {
+        auto monsterPtr = dynamic_cast<MonsterCard *>(card);
+        auto pendPtr = dynamic_cast<PendulumCard *>(card);
+        ///make sure that this card can't be casted to pendulum
+        if (monsterPtr && pendPtr == nullptr) {
             counter++;
         }
     }
@@ -126,10 +141,11 @@ unsigned int Deck::monsterCount() const {
 unsigned int Deck::spellCount() const {
     int counter = 0;
 
-    for(auto card: deck){
-        auto spellPtr = dynamic_cast<MagicCard*>(card);
-        auto pendPtr = dynamic_cast<PendulumCard*>(card);
-        if(spellPtr && pendPtr == nullptr){
+    for (auto card: deck) {
+        auto spellPtr = dynamic_cast<MagicCard *>(card);
+        auto pendPtr = dynamic_cast<PendulumCard *>(card);
+        ///make sure that this card can't be casted to pendulum
+        if (spellPtr && pendPtr == nullptr) {
             counter++;
         }
     }
@@ -139,9 +155,10 @@ unsigned int Deck::spellCount() const {
 unsigned int Deck::pendulumCount() const {
     int counter = 0;
 
-    for(auto card: deck){
-        auto pendPtr = dynamic_cast<PendulumCard*>(card);
-        if(pendPtr){
+    for (auto card: deck) {
+        auto pendPtr = dynamic_cast<PendulumCard *>(card);
+        ///if pointer is valid counter++
+        if (pendPtr) {
             counter++;
         }
     }
@@ -153,98 +170,106 @@ unsigned int Deck::cardCount() const {
 }
 
 void Deck::eraseDeck() {
-    for(auto card : deck){
+    for (auto card : deck) {
         delete card;
     }
     deck.clear();
 }
 
 void Deck::printDeck() {
-    for(auto card : deck){
+    for (auto card : deck) {
         card->print();
         std::cout << std::endl;
     }
 }
 
 void Deck::shuffle() {
-    srand (time(NULL));
+    ///using random seed
+    srand(time(NULL));
 
-    std::vector<Card*> temp;
-    int* takenPositions = new int[deck.size()];
-    for(int i = 0; i < deck.size(); i++){
+    std::vector<Card *> temp;///temporary vector
+    int *takenPositions = new int[deck.size()];///storage for all positions
+    ///fill the entire vector with -1
+    for (int i = 0; i < deck.size(); i++) {
         takenPositions[i] = -1;
     }
 
-    for(int i = 0; i < deck.size(); i++){
+    ///for each cycle generate a random number between 0 and the size of the deck, then check if this number has already
+    /// ///been generated before, if yes do a loop again at the same 'i' and do all these previous steps again, if if no
+    /// ///add the card from 'deck' at this index to the new temp vector, after that add the used number to the storage
+    for (int i = 0; i < deck.size(); i++) {
+
         int randomNum = rand() % deck.size();
         bool existingNumber = false;
 
-        for(int j = 0; j < i; j++){
-            if(randomNum == takenPositions[j]){
+        for (int j = 0; j < i; j++) {
+            if (randomNum == takenPositions[j]) {
                 existingNumber = true;
                 break;
             }
         }
 
-        if(existingNumber){
+        if (existingNumber) {
             i--;
             continue;
-        }
-        else{
+        } else {
             temp.push_back(deck[randomNum]);
             takenPositions[i] = randomNum;
         }
     }
+    ///at the end delete the storage int
     delete[] takenPositions;
     deck = temp;
 }
 
 void Deck::setDeckInOrder() {
-    std::vector<Card*> temp;
+    std::vector<Card *> temp;
 
     unsigned int counter = monsterCount();
 
-    for(auto card : deck){
-        if(counter != 0){
-            auto monsterPtr = dynamic_cast<MonsterCard*>(card);
-            auto pendPtr = dynamic_cast<PendulumCard*>(card);
-            if(monsterPtr && pendPtr == nullptr){
+    ///check if monster is valid pointer and this card can't be casted to PendulumCard, if both true, add this card to
+    ///temp vector
+    for (auto card : deck) {
+        if (counter != 0) {
+            auto monsterPtr = dynamic_cast<MonsterCard *>(card);
+            auto pendPtr = dynamic_cast<PendulumCard *>(card);
+            if (monsterPtr && pendPtr == nullptr) {
                 temp.push_back(card);
                 counter--;
             }
-        }
-        else{
+        } else {
             break;
         }
     }
 
     counter = spellCount();
 
-    for(auto card : deck){
-        if(counter != 0){
-            auto spellPtr = dynamic_cast<MagicCard*>(card);
-            auto pendPtr = dynamic_cast<PendulumCard*>(card);
-            if(spellPtr && pendPtr == nullptr){
+    ///check if spell is valid pointer and this card can't be casted to PendulumCard, if both true, add this card to
+    /// temp vector
+    for (auto card : deck) {
+        if (counter != 0) {
+            auto spellPtr = dynamic_cast<MagicCard *>(card);
+            auto pendPtr = dynamic_cast<PendulumCard *>(card);
+            if (spellPtr && pendPtr == nullptr) {
                 temp.push_back(card);
                 counter--;
             }
-        }
-        else{
+        } else {
             break;
         }
     }
 
     counter = pendulumCount();
 
-    for(auto card : deck){
-        if(counter != 0){
-            auto pendPtr = dynamic_cast<PendulumCard*>(card);
-            if(pendPtr){
+    ///check if pendulum is valid pointer, if yes add this card to temp vector
+    for (auto card : deck) {
+        if (counter != 0) {
+            auto pendPtr = dynamic_cast<PendulumCard *>(card);
+            if (pendPtr) {
                 temp.push_back(card);
                 counter--;
             }
-        }
-        else{
+        } else {
             break;
         }
     }
@@ -292,10 +317,11 @@ std::istream &operator>>(std::istream &in, Deck &deck) {
 
 ///read information form the deck, and write it to 'ostream' with a certain format
 std::ostream &operator<<(std::ostream &out, Deck &deck) {
-    out << deck.getDeckName() << '|' << deck.cardCount() << '|' << deck.monsterCount() << '|' << deck.spellCount() << '|'
+    out << deck.getDeckName() << '|' << deck.cardCount() << '|' << deck.monsterCount() << '|' << deck.spellCount()
+        << '|'
         << deck.pendulumCount() << '\n';
 
-    for(auto x : deck.deck){
+    for (auto x : deck.deck) {
         out << *x;
     }
     return out;

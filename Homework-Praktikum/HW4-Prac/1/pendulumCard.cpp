@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -94,12 +94,12 @@ std::istream &operator>>(std::istream &in, PendulumCard &pendulum) {
 
     return in;
 }
-
-std::ostream &operator<<(std::ostream &out, const PendulumCard &pendulum) {
-    ///writing the information into certain format
-    out << pendulum.getName() << '|' << pendulum.getEffect() << '|' << pendulum.getRarity() << '|'
-        << pendulum.getAttackPoints() << '|'
-        << pendulum.getDefencePoints() << '|' << pendulum.getPendulumScale() << '|' << pendulum.getCardTypeString()
-        << "\n";
-    return out;
-}
+///leaving this here in case something breaks
+//std::ostream &operator<<(std::ostream &out, const PendulumCard &pendulum) {
+//    ///writing the information into certain format
+//    out << pendulum.getName() << '|' << pendulum.getEffect() << '|' << pendulum.getRarity() << '|'
+//        << pendulum.getAttackPoints() << '|'
+//        << pendulum.getDefencePoints() << '|' << pendulum.getPendulumScale() << '|' << pendulum.getCardTypeString()
+//        << "\n";
+//    return out;
+//}

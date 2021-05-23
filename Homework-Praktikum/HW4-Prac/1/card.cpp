@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -50,7 +50,8 @@ unsigned int Card::getRarity() const {
     return rarity;
 }
 
-std::ostream& operator << (std::ostream& out, const Card& b){
+///returning the ostream using doprint
+std::ostream &operator<<(std::ostream &out, const Card &b) {
     return b.doprint(out);
 }
 

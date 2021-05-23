@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -16,7 +16,7 @@
 #include "card.hpp"
 
 ///three different types of a card
-enum class CardType{
+enum class CardType {
     TRAP,
     BUFF,
     SPELL
@@ -27,22 +27,28 @@ class MagicCard : virtual public Card {
 private:
     CardType spellType;
 
-    std::ostream& doprint(std::ostream& out) const override;
+    std::ostream &doprint(std::ostream &out) const override;
+
 public:
-    MagicCard(std::string name = "", std::string effect = "",unsigned int rarity = 0, CardType cardType = CardType::SPELL);
+    MagicCard(std::string name = "", std::string effect = "", unsigned int rarity = 0,
+              CardType cardType = CardType::SPELL);
+
     CardType getCardType() const;
+
     void setCardType(CardType newCardType);
+
     void print() override;
+
     std::string getCardTypeString() const;///converting the CardType to string
 
-    Card* clone() override;
+    Card *clone() override;
 
 };
 
-void defineCardType(std::string& typeString, CardType& cardType);///converting the string into CardType
+void defineCardType(std::string &typeString, CardType &cardType);///converting the string into CardType
 
 ///overloading operators to read/write information about MagicCard
-std::istream& operator>>(std::istream& in,MagicCard& spell);
-std::ostream& operator<<(std::ostream& out,const MagicCard& spell);
+std::istream &operator>>(std::istream &in, MagicCard &spell);
+//std::ostream& operator<<(std::ostream& out,const MagicCard& spell);
 
 #endif //HW3_PRAC_MAGICCARD_HPP

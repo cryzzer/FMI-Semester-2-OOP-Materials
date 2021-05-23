@@ -1,5 +1,5 @@
 /**
-* Solution to homework assignment 3
+* Solution to homework assignment 4
 * Object Oriented Programming Course
 * Faculty of Mathematics and Informatics of Sofia University
 * Summer semester 2020/2021
@@ -25,7 +25,7 @@ MonsterCard::MonsterCard(std::string name, std::string effect, unsigned int rari
     this->defencePoints = defencePoints;
 }
 
-std::ostream & MonsterCard::doprint(std::ostream & out) const {
+std::ostream &MonsterCard::doprint(std::ostream &out) const {
     out << getName() << '|' << getEffect() << '|' << getRarity() << '|'
         << getAttackPoints() << '|' << getDefencePoints() << '\n';
     return out;
@@ -86,10 +86,10 @@ std::istream &operator>>(std::istream &in, MonsterCard &monster) {
 
     return in;
 }
-
-std::ostream &operator<<(std::ostream &out, const MonsterCard &monster) {
-    ///writing the information into certain format
-    out << monster.getName() << '|' << monster.getEffect() << '|' << monster.getRarity() << '|'
-        << monster.getAttackPoints() << '|' << monster.getDefencePoints() << '\n';
-    return out;
-}
+///leaving this here in case something breaks
+//std::ostream &operator<<(std::ostream &out, const MonsterCard &monster) {
+//    ///writing the information into certain format
+//    out << monster.getName() << '|' << monster.getEffect() << '|' << monster.getRarity() << '|'
+//        << monster.getAttackPoints() << '|' << monster.getDefencePoints() << '\n';
+//    return out;
+//}
