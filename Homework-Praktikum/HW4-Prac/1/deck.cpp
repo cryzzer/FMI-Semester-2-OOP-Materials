@@ -42,8 +42,29 @@ void Deck::setDeckName(std::string newDeckName) {
     deckName = newDeckName;
 }
 
+Card * Deck::getCard(size_t index) {
+    assert(index < deck.size());
+
+    return deck[index];
+}
+
+int Deck::timesCardExists(Card *card) {
+    int timesExists = 0;
+    for (size_t i = 0; i < deck.size(); i++) {
+        if (deck[i]->getName() == card->getName() && bothTypesAreEqual(i,card)) {
+            timesExists++;
+        }
+    }
+    return timesExists;
+}
+
 void Deck::addCard(Card *card) {
-    deck.push_back(card);
+    if(timesCardExists(card) <= 2){
+        deck.push_back(card);
+    }
+    else{
+        delete card;
+    }
 }
 
 bool Deck::bothTypesAreEqual(unsigned int index, Card *card) {
@@ -76,6 +97,8 @@ bool Deck::bothTypesAreEqual(unsigned int index, Card *card) {
     return false;
 }
 
+
+
 void Deck::setCard(unsigned int index, Card *card) {
     if(bothTypesAreEqual(index, card)){
         delete deck[index];
@@ -87,7 +110,7 @@ void Deck::setCard(unsigned int index, Card *card) {
 }
 
 
-unsigned int Deck::getMonsterCount() const {
+unsigned int Deck::monsterCount() const {
     int counter = 0;
 
     for(auto card: deck){
@@ -100,7 +123,7 @@ unsigned int Deck::getMonsterCount() const {
     return counter;
 }
 
-unsigned int Deck::getSpellCount() const {
+unsigned int Deck::spellCount() const {
     int counter = 0;
 
     for(auto card: deck){
@@ -113,7 +136,7 @@ unsigned int Deck::getSpellCount() const {
     return counter;
 }
 
-unsigned int Deck::getPendulumCount() const {
+unsigned int Deck::pendulumCount() const {
     int counter = 0;
 
     for(auto card: deck){
@@ -125,7 +148,7 @@ unsigned int Deck::getPendulumCount() const {
     return counter;
 }
 
-unsigned int Deck::getCardCount() const {
+unsigned int Deck::cardCount() const {
     return deck.size();
 }
 
@@ -179,7 +202,7 @@ void Deck::shuffle() {
 void Deck::setDeckInOrder() {
     std::vector<Card*> temp;
 
-    unsigned int counter = getMonsterCount();
+    unsigned int counter = monsterCount();
 
     for(auto card : deck){
         if(counter != 0){
@@ -195,7 +218,7 @@ void Deck::setDeckInOrder() {
         }
     }
 
-    counter = getSpellCount();
+    counter = spellCount();
 
     for(auto card : deck){
         if(counter != 0){
@@ -211,7 +234,7 @@ void Deck::setDeckInOrder() {
         }
     }
 
-    counter = getPendulumCount();
+    counter = pendulumCount();
 
     for(auto card : deck){
         if(counter != 0){
@@ -269,10 +292,8 @@ std::istream &operator>>(std::istream &in, Deck &deck) {
 
 ///read information form the deck, and write it to 'ostream' with a certain format
 std::ostream &operator<<(std::ostream &out, Deck &deck) {
-    out << deck.getDeckName() << '|' << deck.getCardCount() << '|' << deck.getMonsterCount() << '|' << deck.getSpellCount() << '|'
-        << deck.getPendulumCount() << '\n';
-
-    deck.setDeckInOrder();
+    out << deck.getDeckName() << '|' << deck.cardCount() << '|' << deck.monsterCount() << '|' << deck.spellCount() << '|'
+        << deck.pendulumCount() << '\n';
 
     for(auto x : deck.deck){
         out << *x;

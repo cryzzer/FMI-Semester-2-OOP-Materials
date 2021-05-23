@@ -23,6 +23,8 @@ private:
     std::vector<Card*> deck;
 
     bool bothTypesAreEqual(unsigned int index, Card* card);
+
+    int timesCardExists(Card* card);
 public:
     Deck(std::string deckName = "");
     Deck(const Deck& rhs);
@@ -32,10 +34,12 @@ public:
     std::string getDeckName() const;
     void setDeckName(std::string newDeckName);
 
-    unsigned int getMonsterCount() const;
-    unsigned int getSpellCount() const;
-    unsigned int getPendulumCount() const;
-    unsigned int getCardCount() const;
+    Card* getCard(size_t index);
+
+    unsigned int monsterCount() const;
+    unsigned int spellCount() const;
+    unsigned int pendulumCount() const;
+    unsigned int cardCount() const;
 
     void addCard(Card* card);
     void setCard(unsigned int index, Card* card);
