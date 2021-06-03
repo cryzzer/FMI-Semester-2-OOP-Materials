@@ -28,6 +28,8 @@ public:
   // 0 otherwise
   int read() const override;
 
+  Subscriber* clone() override;
+
   private:
   size_t counter = 0;
   size_t period;

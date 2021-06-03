@@ -15,4 +15,6 @@ public:
   Averager(std::string id);
 
   int read() const override;
+
+  Subscriber* clone() override;
 };

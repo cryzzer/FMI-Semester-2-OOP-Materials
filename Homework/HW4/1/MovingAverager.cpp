@@ -31,3 +31,7 @@ int MovingAverager::read() const {
     return returnValue / windowSize;
   }
 }
+
+Subscriber* MovingAverager::clone(){
+  return new MovingAverager(*this);
+}

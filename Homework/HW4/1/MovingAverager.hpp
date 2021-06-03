@@ -24,4 +24,6 @@ class MovingAverager : public Subscriber {
   // of data points
   // returns 0 if there's no data points
   int read() const override;
+
+  Subscriber* clone() override;
 };

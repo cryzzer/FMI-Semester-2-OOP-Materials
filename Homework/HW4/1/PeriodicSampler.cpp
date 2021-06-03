@@ -16,3 +16,7 @@ int PeriodicSampler::read() const {
   }
   return messages[messages.size() - 1].data;
 }
+
+Subscriber* PeriodicSampler::clone(){
+  return new PeriodicSampler(*this);
+}

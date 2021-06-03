@@ -15,3 +15,7 @@ int Averager::read() const {
 
   return returnValue / messages.size();
 }
+
+Subscriber* Averager::clone(){
+  return new Averager(*this);
+}

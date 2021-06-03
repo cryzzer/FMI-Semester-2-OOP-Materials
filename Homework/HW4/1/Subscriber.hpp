@@ -16,6 +16,8 @@ class Subscriber {
 
   virtual int read() const = 0;
 
+  virtual Subscriber* clone() = 0;
+
  protected:
   std::vector<Message> messages;
 };
