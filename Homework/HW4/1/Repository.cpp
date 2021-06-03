@@ -1,7 +1,7 @@
 #include "Repository.hpp"
 
 void Repository::add(Subscriber* sub) {
-  subConstainer.push_back(sub);
+  subConstainer.push_back(sub->clone());
 }
 
 void Repository::deleteInfo() {
