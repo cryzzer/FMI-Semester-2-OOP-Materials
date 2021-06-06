@@ -4,9 +4,10 @@
 
 #include "Message.hpp"
 
+// abstract class
 class Subscriber {
  public:
-  std::string id;
+  const std::string id;
 
   Subscriber(std::string id);
 

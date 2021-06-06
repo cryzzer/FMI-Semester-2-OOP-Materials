@@ -1,5 +1,4 @@
 #pragma once
-
 class Comparable {
  public:
   Comparable() = default;

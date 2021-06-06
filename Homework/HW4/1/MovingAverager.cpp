@@ -3,6 +3,8 @@
 MovingAverager::MovingAverager(std::string id, size_t windowSize)
     : Subscriber(id), windowSize(windowSize) {}
 
+// return the avarage number between the last message and "windowSize", which is
+// the border that we want to limit the reading
 int MovingAverager::read() const {
   if (messages.empty()) {
     return 0;
@@ -30,6 +32,7 @@ int MovingAverager::read() const {
   }
 }
 
+// returns the clone of this object
 Subscriber* MovingAverager::clone() {
   return new MovingAverager(*this);
 }
