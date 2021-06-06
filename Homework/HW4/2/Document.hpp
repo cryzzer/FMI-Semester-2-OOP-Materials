@@ -24,8 +24,11 @@ class Document : public Object {
 
   Object* clone() const override;
 
-  std::vector<std::string> lines;
+  std::string getLine(const unsigned int& index) const;
+  void changeLine(const unsigned int& index,const std::string& newStr);
 
  private:
+  std::vector<std::string> lines;
+
   unsigned int currentLine;
 };

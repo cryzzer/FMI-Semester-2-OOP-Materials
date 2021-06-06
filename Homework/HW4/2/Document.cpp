@@ -18,7 +18,6 @@ std::string Document::read_line() {
     throw std::out_of_range("No data entered!");
   }
   if (lines.size() < currentLine) {
-    currentLine = 1;
     throw std::out_of_range("End of document reached!");
   }
   currentLine++;
@@ -30,7 +29,7 @@ std::string Document::read_line(const unsigned line) {
   if (lines.empty()) {
     throw std::out_of_range("No data entered!");
   }
-  if (lines.size() < line) {
+  if (lines.size() < line || line <= 0) {
     throw std::out_of_range("End of document reached!");
   }
 
@@ -94,7 +93,7 @@ void Document::from_string(const std::string& str) {
 std::string Document::debug_print() const {
   std::stringstream ss;
   for (size_t i = 0; i < lines.size(); i++) {
-    ss << i + 1 << ":" << lines[i] << '\n';
+    ss << "Line " << i + 1 << ":" << lines[i] << '\n';
   }
 
   return ss.str();
@@ -103,4 +102,17 @@ std::string Document::debug_print() const {
 Object* Document::clone() const {
   return new Document(*this);
   //
+}
+
+std::string Document::getLine(const unsigned int& index) const {
+  if (index < lines.size()) {
+    return lines[index];
+  }
+  return "";
+}
+void Document::changeLine(const unsigned int& index,
+                          const std::string& newStr) {
+  if (index < lines.size()) {
+    lines[index] = newStr;
+  }
 }
